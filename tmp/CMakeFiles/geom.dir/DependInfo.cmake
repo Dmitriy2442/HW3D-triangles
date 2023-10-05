@@ -4,7 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/main.cpp" "/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/tmp/CMakeFiles/main.dir/main.cpp.o"
+  "/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/figures.cpp" "/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/tmp/CMakeFiles/geom.dir/figures.cpp.o"
+  "/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/geometric_operations.cpp" "/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/tmp/CMakeFiles/geom.dir/geometric_operations.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -14,7 +15,6 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/tmp/CMakeFiles/geom.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -1,5 +1,11 @@
 #include <iostream>
+#include <cmath>
 #include "figures.hpp"
+#include "geometric_operations.hpp"
+
+bool equal(const float &a, const float &b) {
+    return (std::abs(a-b) < EPSILON);
+}
 
 Point::Point() {
     x = 0;
@@ -66,6 +72,9 @@ Vector Vector::operator = (const Vector vec) {
     return Vector(x, y, z);
 } 
 
+float Vector::abs_value() const {
+    return std::sqrt(x*x + y*y + z*z);
+}
 
 Line::Line() {
     Point p_0 = Point(0, 0, 0);
@@ -79,18 +88,14 @@ Line::Line(const Point &p_0, const Vector &vec) {
     d = vec;
 }
 
+Line::Line(const Point &p1, const Point &p2) {
+
+}
+
 Point Line::get_point() const {
     return P;
 }
 
 Vector Line::get_direction() const {
     return d;
-}
-
-int main() {
-    Vector vec1 = Vector(2, 3, 4);
-    Vector vec2 = Vector(3, 4, 5);
-    float coeff = 5;
-    Vector vec3 = vec1 * coeff;
-    std::cout << vec3.get_x() << vec3.get_y() << vec3.get_z() << std::endl;
 }

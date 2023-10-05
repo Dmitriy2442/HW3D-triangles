@@ -1,5 +1,9 @@
-#ifndef FIGURES_H
-#define FIGURES_H
+#ifndef FIGURES_HPP
+#define FIGURES_HPP
+
+#define EPSILON 0.00001
+
+bool equal(const float &a, const float &b);
 
 class Point {
 private:
@@ -29,6 +33,8 @@ public:
     Vector operator + (const Vector &vec) const;
     Vector operator * (const float &coeff) const;
     Vector operator = (const Vector vec);
+
+    float abs_value() const;
 };
 
 class Line {
@@ -38,6 +44,7 @@ private:
 public:
     Line();
     Line(const Point &p_0, const Vector &vec);
+    Line(const Point &p1, const Point &p2);
 
     Point get_point() const;
     Vector get_direction() const;
@@ -47,4 +54,4 @@ class Plane {
 
 };
 
-#endif /*FIGURES_H*/
+#endif /*FIGURES_HPP*/

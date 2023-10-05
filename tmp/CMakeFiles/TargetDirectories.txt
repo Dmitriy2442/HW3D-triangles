@@ -1,3 +1,4 @@
 /mnt/c/Users/Дмитрий/Programming/HW3D-triangles/tmp/CMakeFiles/rebuild_cache.dir
 /mnt/c/Users/Дмитрий/Programming/HW3D-triangles/tmp/CMakeFiles/edit_cache.dir
 /mnt/c/Users/Дмитрий/Programming/HW3D-triangles/tmp/CMakeFiles/main.dir
+/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/tmp/CMakeFiles/geom.dir

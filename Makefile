@@ -51,7 +51,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /mnt/c/Users/Дмитрий/Programming/HW3D-triangles
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/Дмитрий/Programming/HW3D-triangles/tmp
+CMAKE_BINARY_DIR = /mnt/c/Users/Дмитрий/Programming/HW3D-triangles
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Дмитрий/Programming/HW3D-triangles/tmp/CMakeFiles /mnt/c/Users/Дмитрий/Programming/HW3D-triangles/tmp/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Дмитрий/Programming/HW3D-triangles/CMakeFiles /mnt/c/Users/Дмитрий/Programming/HW3D-triangles/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Дмитрий/Programming/HW3D-triangles/tmp/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Дмитрий/Programming/HW3D-triangles/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

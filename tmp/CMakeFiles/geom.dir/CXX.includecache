@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/figures.cpp
+iostream
+-
+cmath
+-
+figures.hpp
+/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/figures.hpp
+geometric_operations.hpp
+/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/geometric_operations.hpp
+
+/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/figures.hpp
+
+/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/geometric_operations.cpp
+geometric_operations.hpp
+/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/geometric_operations.hpp
+
+/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/geometric_operations.hpp
+figures.hpp
+/mnt/c/Users/Дмитрий/Programming/HW3D-triangles/figures.hpp
+
