@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgeom.a  CMakeFiles/geom.dir/figures.cpp.o CMakeFiles/geom.dir/geometric_operations.cpp.o
-/usr/bin/ranlib libgeom.a
