@@ -3,7 +3,7 @@
 #include "figures.hpp"
 #include "geometric_operations.hpp"
 
-bool equal(const float &a, const float &b) {
+bool equal(const float a, const float b) {
     return (std::abs(a-b) < EPSILON);
 }
 
@@ -43,6 +43,12 @@ Vector::Vector(const float x_comp, const float y_comp, const float z_comp) {
     z = z_comp;
 }
 
+Vector::Vector(const Point &point1, const Point &point2) {
+    x = point2.get_x() - point1.get_x();
+    x = point2.get_y() - point1.get_y();
+    x = point2.get_z() - point1.get_z();
+}
+
 float Vector::get_x() const {
     return x;
 }
@@ -60,12 +66,12 @@ Vector Vector::operator + (const Vector &vec) const {
     return sum;
 }
 
-Vector Vector::operator * (const float &coeff) const {
+Vector Vector::operator * (const float coeff) const {
     Vector mul(x*coeff, y*coeff, z*coeff);
     return mul;
 }
 
-Vector Vector::operator = (const Vector vec) {
+Vector Vector::operator = (const Vector &vec) {
     x = vec.get_x();
     y = vec.get_y();
     z = vec.get_z();
@@ -77,19 +83,20 @@ float Vector::abs_value() const {
 }
 
 Line::Line() {
-    Point p_0 = Point(0, 0, 0);
+    Point p0 = Point(0, 0, 0);
     Vector vec = Vector(0, 0, 0);
-    P = p_0;
+    P = p0;
     d = vec;
 }
 
-Line::Line(const Point &p_0, const Vector &vec) {
-    P = p_0;
+Line::Line(const Point &p0, const Vector &vec) {
+    P = p0;
     d = vec;
 }
 
 Line::Line(const Point &p1, const Point &p2) {
-
+    P = p1;
+    d = Vector(p1, p2);
 }
 
 Point Line::get_point() const {
@@ -98,4 +105,21 @@ Point Line::get_point() const {
 
 Vector Line::get_direction() const {
     return d;
+}
+
+Triangle::Triangle() {
+    V1 = Point(0, 0, 0);
+    V2 = Point(0, 0, 0);
+    V3 = Point(0, 0, 0);
+}
+
+Triangle::Triangle(const Point &vertice1, const Point &vertice2, const Point &vertice3) {
+    V1 = vertice1;
+    V2 = vertice2;
+    V3 = vertice3;
+}
+
+Plane Triangle::triangle_plane() const {
+    Vector n = vector_product(Vector(V1, V2), Vector(V2, V3));
+    return Plane(V1, n);
 }

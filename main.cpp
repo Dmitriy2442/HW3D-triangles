@@ -3,7 +3,8 @@
 #include "geometric_operations.hpp"
 
 int main() {
-    Vector vec1 = Vector(2, 3, 4);
-    Vector vec2 = Vector(3, 4, 5);
-    std::cout << scalar_product(vec1, vec2) << std::endl;
+    Vector vec1 = Vector(1, 2, 3);
+    Vector vec2 = Vector(4, 5, 6);
+    Vector vec3 = vector_product(vec1, vec2);
+    std::cout << vec3.get_x() << vec3.get_y() << vec3.get_z() << std::endl;
 }

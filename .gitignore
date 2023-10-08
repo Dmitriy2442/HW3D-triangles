@@ -9,6 +9,12 @@
 !*/
 # The end of the important part
 
+#Part of ignoring CMakeFiles
+tmp
+CMakeCache.txt
+cmake_install.cmake
+CMakeFiles
+
 #VS Code
 .vscode
 
