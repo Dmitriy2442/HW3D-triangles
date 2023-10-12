@@ -163,32 +163,32 @@ figures.cpp.s:
 	$(MAKE) -f CMakeFiles/geom.dir/build.make CMakeFiles/geom.dir/figures.cpp.s
 .PHONY : figures.cpp.s
 
-geometric_operations.o: geometric_operations.cpp.o
+intersection.o: intersection.cpp.o
 
-.PHONY : geometric_operations.o
+.PHONY : intersection.o
 
 # target to build an object file
-geometric_operations.cpp.o:
-	$(MAKE) -f CMakeFiles/geom.dir/build.make CMakeFiles/geom.dir/geometric_operations.cpp.o
-.PHONY : geometric_operations.cpp.o
+intersection.cpp.o:
+	$(MAKE) -f CMakeFiles/geom.dir/build.make CMakeFiles/geom.dir/intersection.cpp.o
+.PHONY : intersection.cpp.o
 
-geometric_operations.i: geometric_operations.cpp.i
+intersection.i: intersection.cpp.i
 
-.PHONY : geometric_operations.i
+.PHONY : intersection.i
 
 # target to preprocess a source file
-geometric_operations.cpp.i:
-	$(MAKE) -f CMakeFiles/geom.dir/build.make CMakeFiles/geom.dir/geometric_operations.cpp.i
-.PHONY : geometric_operations.cpp.i
+intersection.cpp.i:
+	$(MAKE) -f CMakeFiles/geom.dir/build.make CMakeFiles/geom.dir/intersection.cpp.i
+.PHONY : intersection.cpp.i
 
-geometric_operations.s: geometric_operations.cpp.s
+intersection.s: intersection.cpp.s
 
-.PHONY : geometric_operations.s
+.PHONY : intersection.s
 
 # target to generate assembly for a file
-geometric_operations.cpp.s:
-	$(MAKE) -f CMakeFiles/geom.dir/build.make CMakeFiles/geom.dir/geometric_operations.cpp.s
-.PHONY : geometric_operations.cpp.s
+intersection.cpp.s:
+	$(MAKE) -f CMakeFiles/geom.dir/build.make CMakeFiles/geom.dir/intersection.cpp.s
+.PHONY : intersection.cpp.s
 
 main.o: main.cpp.o
 
@@ -230,9 +230,9 @@ help:
 	@echo "... figures.o"
 	@echo "... figures.i"
 	@echo "... figures.s"
-	@echo "... geometric_operations.o"
-	@echo "... geometric_operations.i"
-	@echo "... geometric_operations.s"
+	@echo "... intersection.o"
+	@echo "... intersection.i"
+	@echo "... intersection.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -1,10 +1,22 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "figures.hpp"
-#include "geometric_operations.hpp"
+#include "intersection.hpp"
 
 int main() {
-    Vector vec1 = Vector(1, 2, 3);
-    Vector vec2 = Vector(4, 5, 6);
-    Vector vec3 = vector_product(vec1, vec2);
-    std::cout << vec3.get_x() << vec3.get_y() << vec3.get_z() << std::endl;
+    std::ofstream logs;
+    logs.open("logs.txt");
+
+    Vector vec1 = Vector(0, 0, 0);
+    Vector vec2 = Vector(3, 6, 8);
+    Point p1 = Point(0, 0, 0);
+    Point p2 = Point(1, 0, 0);
+    Point p3 = Point(1, 1, 0);
+    Triangle T1 = Triangle(p1, p2, p3);
+    Triangle T2 = Triangle(Point(), Point(), Point());
+    Plane P = T1.triangle_to_plane();
+    P.logs_out(logs, "P");
+
+    std::cout << Triangle::intersect(T1, T2) << std::endl;
 }

@@ -15,11 +15,14 @@ CMakeCache.txt
 cmake_install.cmake
 CMakeFiles
 
+#logs file
+logs.txt
+
 #VS Code
 .vscode
 
-#Unignore Makefile
-!Makefile
+#Ignore Makefile
+Makefile
 
 # Prerequisites
 *.d
