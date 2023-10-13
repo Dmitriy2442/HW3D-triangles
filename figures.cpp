@@ -57,6 +57,10 @@ bool Vector::are_collinear(const Vector &vec1, const Vector &vec2) {
     return (equal(vec1.abs_value() * vec2.abs_value(), Vector::scalar_product(vec1, vec2)));
 }
 
+Point Vector::vector_to_point() {
+    return Point(x, y, z);
+}
+
 float Vector::abs_value() const {
     return std::sqrt(x*x + y*y + z*z);
 }
@@ -131,8 +135,22 @@ void Plane::logs_out(std::ofstream &log_file, std::string name) {
     log_file << std::endl;
 }
 
-float Plane::signed_dist(Point &p) {
-    return (scalar_product(p.vec(), n) + d);
+float Plane::signed_dist(const Point &p) {
+    return (Vector::scalar_product(p.vec(), n) + d);
+}
+
+Line Plane::planes_to_line(const Plane &P1, const Plane &P2) {
+    float s1, s2, a, b, n1n2, n1sqr, n2sqr;
+    Vector P;
+    Vector d = Vector::vector_product(P1.n, P2.n);
+    s1 = P1.d;
+    s2 = P2.d;
+    n1n2 = Vector::scalar_product(P1.n, P2.n);
+    n1sqr = Vector::scalar_product(P1.n, P1.n);
+    n2sqr = Vector::scalar_product(P2.n, P2.n);
+    a = (s2 * n1n2 - s1 * n2sqr) / (n1n2*n1n2 - n1sqr * n2sqr);
+    b = (s1 * n1n2 - s2 * n1sqr) / (n1n2*n1n2 - n1sqr * n2sqr);
+    P = P1.n*a + P2.n*b;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -148,6 +166,16 @@ Triangle::Triangle(const Point &vertice1, const Point &vertice2, const Point &ve
     V1 = vertice1;
     V2 = vertice2;
     V3 = vertice3;
+}
+
+Point Triangle::get_V1() const {
+    return V1;
+}
+Point Triangle::get_V2() const {
+    return V2;
+}
+Point Triangle::get_V3() const {
+    return V3;
 }
 
 Plane Triangle::triangle_to_plane() const {

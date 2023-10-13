@@ -8,6 +8,8 @@
 
 bool equal(const float a, const float b);
 
+class Point;
+
 class Vector {
 private:
     float x, y, z;
@@ -26,6 +28,7 @@ public:
     static Vector vector_product(const Vector &vec1, const Vector &vec2);
     static bool are_collinear(const Vector &vec1, const Vector &vec2);
 
+    Point vector_to_point();
     float abs_value() const;
 };
 
@@ -62,7 +65,8 @@ public:
     Plane(const float d, const Vector &n_0);
 
     void logs_out(std::ofstream &log_file, std::string name);
-    float signed_dist(Point &p);
+    float signed_dist(const Point &p);
+    static Line planes_to_line(const Plane &P1, const Plane &P2);
 };
 
 class Triangle {
@@ -72,6 +76,10 @@ public:
     //Triangle() : v1(Point())
     Triangle();
     Triangle(const Point &vertice1, const Point &vertice2, const Point &vertice3);
+
+    Point get_V1() const;
+    Point get_V2() const;
+    Point get_V3() const;
 
     Plane triangle_to_plane() const;
     static bool intersect(const Triangle &T1, const Triangle &T2);
