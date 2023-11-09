@@ -2,9 +2,7 @@
 #define GEOMETRIC_OPERATIONS_HPP
 
 #include "figures.hpp"
+#include <vector>
 
-float scalar_product(const Vector &vec1, const Vector &vec2);
-Vector vector_product(const Vector &vec1, const Vector &vec2);
-bool are_collinear(const Vector &vec1, const Vector &vec2);
 
 #endif /*GEOMETRIC_OPERATIONS_HPP*/

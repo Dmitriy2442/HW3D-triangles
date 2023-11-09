@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <string>
+#include <vector>
 
 #define EPSILON 0.00001
 
@@ -15,8 +16,8 @@ private:
     float x, y, z;
 
 public:
-    Vector();
-    Vector(const float x_comp, const float y_comp, const float z_comp);
+    Vector(): x(0.0f), y(0.0f), z(0.0f) {}
+    Vector(const float x_comp, const float y_comp, const float z_comp): x(x_comp), y(y_comp), z(z_comp) {} 
 
     void logs_out(std::ofstream &log_file, std::string name);
 
@@ -37,8 +38,8 @@ private:
     float x, y, z;
 
 public:
-    Point();
-    Point(const float x_coord, const float y_coord, const float z_coord);
+    Point(): x(0.0f), y(0.0f), z(0.0f) {}
+    Point(const float x_coord, const float y_coord, const float z_coord): x(x_coord), y(y_coord), z(z_coord) {}
 
     void logs_out(std::ofstream &log_file, std::string name);
 
@@ -51,9 +52,11 @@ private:
     Point P;
     Vector d;
 public:
-    Line();
-    Line(const Point &p0, const Vector &vec);
-    Line(const Point &p1, const Point &p2);
+    Line(): P(Point()), d(Vector()) {}
+    Line(const Point &p0, const Vector &vec): P(p0), d(vec) {}
+    Line(const Point &p1, const Point &p2): P(p1), d(Point::points_to_vector(p1, p2)) {}
+
+    float projection(const Point &P) const;
 };
 
 class Plane {
@@ -61,11 +64,11 @@ private:
     float d;
     Vector n;
 public:
-    Plane();
-    Plane(const float d, const Vector &n_0);
+    Plane(): d(0.0f), n(Vector()) {}
+    Plane(const float d0, const Vector &n0): d(d0), n(n0) {}
 
     void logs_out(std::ofstream &log_file, std::string name);
-    float signed_dist(const Point &p);
+    float signed_dist(const Point &p) const;
     static Line planes_to_line(const Plane &P1, const Plane &P2);
 };
 
@@ -73,9 +76,8 @@ class Triangle {
 private:
     Point V1, V2, V3;
 public:
-    //Triangle() : v1(Point())
-    Triangle();
-    Triangle(const Point &vertice1, const Point &vertice2, const Point &vertice3);
+    Triangle(): V1(Point()), V2(Point()), V3(Point()) {}
+    Triangle(const Point &vertice1, const Point &vertice2, const Point &vertice3): V1(vertice1), V2(vertice2), V3(vertice3) {}
 
     Point get_V1() const;
     Point get_V2() const;
@@ -83,6 +85,9 @@ public:
 
     Plane triangle_to_plane() const;
     static bool intersect(const Triangle &T1, const Triangle &T2);
+    static std::vector<float> calc_signed_distances(const Plane &P1, const Plane &P2, const Triangle &T1, const Triangle &T2);      //Returns array of distances, first from vertices of T1 to P2, then from vertices of T2 to P1
+    static std::vector<float> calc_projections(const Line &L, const Triangle &T1, const Triangle &T2);
+    Triangle rearrange(std::vector<float> &d) const;
 };
 
 #endif /*FIGURES_HPP*/

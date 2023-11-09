@@ -12,18 +12,6 @@ bool equal(const float a, const float b) {
 //---------------------------------------------------------------------------------------------------------------------
 //Vector part
 
-Vector::Vector() {
-    x = 0;
-    y = 0;
-    z = 0;
-}
-
-Vector::Vector(const float x_comp, const float y_comp, const float z_comp) {
-    x = x_comp;
-    y = y_comp;
-    z = z_comp;
-}
-
 void Vector::logs_out(std::ofstream &log_file, std::string name) {
     log_file << "Vector " << name << ": " << x << " " << y << " " << z << std::endl;
 }
@@ -68,18 +56,6 @@ float Vector::abs_value() const {
 //---------------------------------------------------------------------------------------------------------------------
 //Point part
 
-Point::Point() {
-    x = 0;
-    y = 0;
-    z = 0;
-}
-
-Point::Point(const float x_coord, const float y_coord, const float z_coord) {
-    x = x_coord;
-    y = y_coord;
-    z = z_coord;
-}
-
 void Point::logs_out(std::ofstream &log_file, std::string name) {
     log_file << "Point " << name << ": " << x << " " << y << " " << z << std::endl;
 }
@@ -98,35 +74,12 @@ Vector Point::vec() const {
 //---------------------------------------------------------------------------------------------------------------------
 //Line part
 
-Line::Line() {
-    Point p0 = Point(0, 0, 0);
-    Vector vec = Vector(0, 0, 0);
-    P = p0;
-    d = vec;
-}
-
-Line::Line(const Point &p0, const Vector &vec) {
-    P = p0;
-    d = vec;
-}
-
-Line::Line(const Point &p1, const Point &p2) {
-    P = p1;
-    d = Point::points_to_vector(p1, p2);
+float Line::projection(const Point &projected_point) const {
+    return Vector::scalar_product(d, Point::points_to_vector(projected_point, P));
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 //Plane part
-
-Plane::Plane() {
-    d = 0;
-    n = Vector();
-}
-
-Plane::Plane(const float d_0, const Vector &n_0) {
-    d = d_0;
-    n = n_0;
-}
 
 void Plane::logs_out(std::ofstream &log_file, std::string name) {
     log_file << "Plane " << name << ": " << std::endl;
@@ -135,7 +88,7 @@ void Plane::logs_out(std::ofstream &log_file, std::string name) {
     log_file << std::endl;
 }
 
-float Plane::signed_dist(const Point &p) {
+float Plane::signed_dist(const Point &p) const {
     return (Vector::scalar_product(p.vec(), n) + d);
 }
 
@@ -151,22 +104,11 @@ Line Plane::planes_to_line(const Plane &P1, const Plane &P2) {
     a = (s2 * n1n2 - s1 * n2sqr) / (n1n2*n1n2 - n1sqr * n2sqr);
     b = (s1 * n1n2 - s2 * n1sqr) / (n1n2*n1n2 - n1sqr * n2sqr);
     P = P1.n*a + P2.n*b;
+    return Line(P.vector_to_point(), d);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 //Triangle part
-
-Triangle::Triangle() {
-    V1 = Point();
-    V2 = Point();
-    V3 = Point();
-}
-
-Triangle::Triangle(const Point &vertice1, const Point &vertice2, const Point &vertice3) {
-    V1 = vertice1;
-    V2 = vertice2;
-    V3 = vertice3;
-}
 
 Point Triangle::get_V1() const {
     return V1;
