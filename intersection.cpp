@@ -1,28 +1,48 @@
-#include <vector>
 #include "intersection.hpp"
-#include "figures.hpp"
 
 bool Triangle::intersect(const Triangle &T1, const Triangle &T2) {
+    float t1_T1 = 0, t2_T1 = 0, t1_T2 = 0, t2_T2 = 0;
     //To do: degenerate triangle pairs
-    std::vector<float> d;
-    std::vector<float> p;
+    std::vector<float> d_T1(3);
+    std::vector<float> d_T2(3);
+
+    std::vector<float> p_T1(3);
+    std::vector<float> p_T2(3);
+
     const Plane P2 = T2.triangle_to_plane();
     const Plane P1 = T1.triangle_to_plane();
     const Line L = Plane::planes_to_line(P1, P2);
+    d_T1 = Triangle::calc_signed_distances(T1, P2);
+    d_T2 = Triangle::calc_signed_distances(T2, P1);
 
-/*    d = Triangle::calc_signed_distances(P1, P2, T1, T2);
-
-    if (((d[0] > 0) && (d[1] > 0) && (d[2] > 0))||((d[3] < 0) && (d[4] < 0) && (d[5] < 0)))
+    if (((d_T1[0] > 0) && (d_T1[1] > 0) && (d_T1[2] > 0))||((d_T2[0] < 0) && (d_T2[1] < 0) && (d_T2[2] < 0)))
         return 0;
-    if (((d[0] > 0) && (d[1] > 0) && (d[2] > 0))||((d[3] < 0) && (d[4] < 0) && (d[5] < 0)))
+    if (((d_T1[0] > 0) && (d_T1[1] > 0) && (d_T1[2] > 0))||((d_T2[0] < 0) && (d_T2[1] < 0) && (d_T2[2] < 0)))
         return 0;
 
-    if ((equal(d[0], 0))&&(equal(d[1], 0))&&(equal(d[2], 0))) {
+    if ((equal(d_T1[0], 0))&&(equal(d_T1[1], 0))&&(equal(d_T1[2], 0))) {
         //Complanar triangles case
-    }*/
+    }
 
-//    Triangle T1_rearr = T1.rearrange();
-//    Triangle T1_rearr = T2.rearrange();
+    Triangle T1_rearr = T1.rearrange(d_T1);
+    Triangle T2_rearr = T2.rearrange(d_T2);
 
-//    p = Triangle::calc_projections(L, T1, T2);
+    p_T1 = Triangle::calc_projections(L, T1);
+    p_T2 = Triangle::calc_projections(L, T2);
+
+    t1_T1 = p_T1[0] + (p_T1[1] - p_T1[0]) * d_T1[0] / (d_T1[0] - d_T1[1]);
+    t2_T1 = p_T1[1] + (p_T1[2] - p_T1[1]) * d_T1[1] / (d_T1[1] - d_T1[2]);
+    t1_T2 = p_T2[0] + (p_T2[1] - p_T2[0]) * d_T2[0] / (d_T2[0] - d_T2[1]);
+    t2_T2 = p_T2[1] + (p_T2[2] - p_T2[1]) * d_T2[1] / (d_T2[1] - d_T2[2]);
+
+    if (equal(t1_T1, t1_T2) || equal(t1_T1, t2_T2) || equal(t1_T2, t2_T1) || equal(t2_T1, t2_T2))
+        return 1;
+    if (t2_T1 < t1_T1)
+        std::swap(t1_T1, t2_T1);
+    if (t2_T2 < t1_T2)
+        std::swap(t1_T2, t2_T2);
+    
+    if (((t1_T1 < t1_T2)&&(t1_T2 < t2_T1)) || ((t1_T1 < t2_T2)&&(t1_T2 < t2_T1)) || ((t1_T2 < t1_T1)&&(t1_T1 < t2_T2)) || ((t1_T2 < t2_T1)&&(t2_T1 < t2_T2)))
+        return 1;
+    return 0;
 }

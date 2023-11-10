@@ -21,7 +21,7 @@ FetchContent_MakeAvailable(googletest)
 
 set(SOURCE_EXE main.cpp)		# Установка переменной со списком исходников для исполняемого файла
 
-set(SOURCE_LIB figures.cpp intersection.cpp)			# Тоже самое, но для библиотеки
+set(SOURCE_LIB figures.cpp geometric_operations.cpp intersection.cpp)			# Тоже самое, но для библиотеки
 
 add_library(geom STATIC ${SOURCE_LIB})	# Создание статической библиотеки с именем foo
 

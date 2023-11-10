@@ -83,10 +83,11 @@ public:
     Point get_V2() const;
     Point get_V3() const;
 
+    void logs_out(std::ofstream &log_file, std::string name);
     Plane triangle_to_plane() const;
     static bool intersect(const Triangle &T1, const Triangle &T2);
-    static std::vector<float> calc_signed_distances(const Plane &P1, const Plane &P2, const Triangle &T1, const Triangle &T2);      //Returns array of distances, first from vertices of T1 to P2, then from vertices of T2 to P1
-    static std::vector<float> calc_projections(const Line &L, const Triangle &T1, const Triangle &T2);
+    static std::vector<float> calc_signed_distances(const Triangle &T1, const Plane &P2);      //Returns array of distances, first from vertices of T1 to P2, then from vertices of T2 to P1
+    static std::vector<float> calc_projections(const Line &L, const Triangle &T);
     Triangle rearrange(std::vector<float> &d) const;
 };
 

@@ -120,6 +120,13 @@ Point Triangle::get_V3() const {
     return V3;
 }
 
+void Triangle::logs_out(std::ofstream &log_file, std::string name) {
+    log_file << "Triangle " << name << ": " << std::endl;
+    V1.logs_out(log_file, "V1");
+    V2.logs_out(log_file, "V2");
+    V3.logs_out(log_file, "V3");
+}
+
 Plane Triangle::triangle_to_plane() const {
     Vector n = Vector::vector_product(Point::points_to_vector(V2, V1), Point::points_to_vector(V3, V1));
     float d = -1 * Vector::scalar_product(n, V1.vec());
