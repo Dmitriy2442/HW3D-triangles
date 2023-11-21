@@ -6,7 +6,6 @@
 #include <vector>
 
 #define EPSILON 0.00001
-
 bool equal(const float a, const float b);
 
 class Point;
@@ -22,6 +21,7 @@ public:
     void logs_out(std::ofstream &log_file, std::string name);
 
     Vector operator + (const Vector &vec) const;
+    Vector operator - (const Vector &vec) const;
     Vector operator * (const float coeff) const;
     Vector operator = (const Vector &vec);
 

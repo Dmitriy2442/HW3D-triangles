@@ -21,6 +21,10 @@ Vector Vector::operator + (const Vector &vec) const {
     return sum;
 }
 
+Vector Vector::operator - (const Vector &vec) const {
+    return Vector(x - vec.x, y - vec.y, z - vec.z);
+}
+
 Vector Vector::operator * (const float coeff) const {
     Vector mul(x*coeff, y*coeff, z*coeff);
     return mul;
