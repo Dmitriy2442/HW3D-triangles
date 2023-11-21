@@ -1,4 +1,5 @@
 #include "intersection.hpp"
+#include <iostream>
 
 bool Triangle::intersect(const Triangle &T1, const Triangle &T2) {
     float t1_T1 = 0, t2_T1 = 0, t1_T2 = 0, t2_T2 = 0;
@@ -24,6 +25,9 @@ bool Triangle::intersect(const Triangle &T1, const Triangle &T2) {
         //Complanar triangles case
     }
 
+/*    for (int i = 0; i < 6; i++)
+        std::cout << d_T1[i] << " " << d_T2[i] << std::endl;*/
+
     Triangle T1_rearr = T1.rearrange(d_T1);
     Triangle T2_rearr = T2.rearrange(d_T2);
 
@@ -34,6 +38,8 @@ bool Triangle::intersect(const Triangle &T1, const Triangle &T2) {
     t2_T1 = p_T1[1] + (p_T1[2] - p_T1[1]) * d_T1[1] / (d_T1[1] - d_T1[2]);
     t1_T2 = p_T2[0] + (p_T2[1] - p_T2[0]) * d_T2[0] / (d_T2[0] - d_T2[1]);
     t2_T2 = p_T2[1] + (p_T2[2] - p_T2[1]) * d_T2[1] / (d_T2[1] - d_T2[2]);
+
+    std::cout << t1_T1 << " " << t2_T1 << std::endl << t1_T2 << " " << std::endl;
 
     if (equal(t1_T1, t1_T2) || equal(t1_T1, t2_T2) || equal(t1_T2, t2_T1) || equal(t2_T1, t2_T2))
         return 1;
